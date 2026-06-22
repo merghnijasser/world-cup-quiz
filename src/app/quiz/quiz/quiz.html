@@ -1,0 +1,69 @@
+<div class="card" *ngIf="quiz.currentQuestion() as q" [@questionAnimation]="quiz.currentIndex()">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <span class="counter">
+      {{ quiz.currentIndex() + 1 }}/10
+    </span>
+
+    <span class="timer" [class.warn]="quiz.timeLeft() <= 5">
+      ⏱ {{ quiz.timeLeft() }}s
+    </span>
+  </div>
+
+
+  <!-- Progress -->
+  <div class="progress-track">
+    <div 
+      class="progress-fill"
+      [style.width.%]="quiz.progress()">
+    </div>
+  </div>
+
+
+  <!-- Question -->
+  <div class="question">
+    {{ q.question }}
+  </div>
+
+
+  <!-- Options -->
+  <div class="options">
+
+    <button
+      *ngFor="let opt of q.options; let i=index"
+      class="option"
+
+      [class.correct]="quiz.answered() && i === q.correct"
+
+      [class.wrong]="
+        quiz.answered() &&
+        quiz.selectedAnswer() === i &&
+        i !== q.correct
+      "
+
+      [class.idle]="!quiz.answered()"
+
+      [disabled]="quiz.answered()"
+
+      (click)="quiz.selectAnswer(i)"
+    >
+
+      <span class="opt-letter">
+        {{ letters[i] }}
+      </span>
+
+      {{ opt }}
+
+    </button>
+
+  </div>
+
+
+  <!-- Score -->
+  <div class="score-bar">
+    ✅ النقاط الحالية :
+    <strong>{{ quiz.score() }}</strong>
+  </div>
+
+</div>

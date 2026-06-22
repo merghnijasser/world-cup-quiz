@@ -1,0 +1,121 @@
+.card {
+  background: #112240;
+  border: 1px solid #1f3a5f;
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 420px;
+  direction: rtl;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+
+.counter {
+  color: #a8c0e0;
+}
+
+
+.timer {
+  background: #1a3a6e;
+  color: #4dd0e1;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+
+.timer.warn {
+  color: #ff6b6b;
+}
+
+
+.progress-track {
+  height: 5px;
+  background: #1a3a6e;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+
+.progress-fill {
+  height: 100%;
+  background: #ffd700;
+  transition: width .4s ease;
+}
+
+
+.question {
+  color: #e8eef7;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  min-height: 64px;
+  margin-bottom: 20px;
+}
+
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.option {
+  background: #0d1f3c;
+  border: 2px solid #1f3a5f;
+  color: #e8eef7;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.option.idle:hover {
+  border-color: #4dd0e1;
+}
+
+
+.option.correct {
+  background: #1e4d2b;
+  border-color: #4caf50;
+}
+
+
+.option.wrong {
+  background: #4d1e1e;
+  border-color: #ff6b6b;
+}
+
+
+.opt-letter {
+  background: #1a3a6e;
+  color: #4dd0e1;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.score-bar {
+  margin-top:18px;
+  padding-top:14px;
+  border-top:1px solid #1f3a5f;
+  color:#a8c0e0;
+  text-align:center;
+}

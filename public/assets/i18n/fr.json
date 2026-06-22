@@ -1,0 +1,35 @@
+{
+ "APP_TITLE":"World Cup Quiz",
+
+ "START":"Commencer 🚀",
+
+ "SELECT_LEVEL":"Choisir le niveau",
+
+ "EASY":"Facile",
+
+ "MEDIUM":"Moyen",
+
+ "HARD":"Difficile",
+
+ "RESULT":"Résultat final",
+
+ "BEST":"Votre meilleur score",
+
+ "NEW_RECORD":"Nouveau record 🎉",
+
+ "SHARE":"Partager",
+
+ "RETRY":"Rejouer",
+
+ "HOME":"Accueil",
+
+ "QUESTIONS":"Questions",
+
+ "TIME":"secondes par question",
+
+ "EXCELLENT":"Excellent!",
+
+ "GOOD":"Bien!",
+
+ "TRY":"Réessayer"
+}

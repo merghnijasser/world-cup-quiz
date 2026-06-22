@@ -1,0 +1,111 @@
+<div class="card">
+
+  <h2>🏁 النتيجة النهائية</h2>
+
+
+  <div class="circle">
+
+    <span class="num">
+      {{ quiz.score() }}
+    </span>
+
+    <span class="denom">
+      / 10
+    </span>
+
+  </div>
+
+
+  <p class="msg">
+    {{ quiz.getResultMessage() }}
+  </p>
+
+
+  <div class="record" *ngIf="isNewRecord">
+    🎉 رقم قياسي جديد!
+  </div>
+
+
+  <div class="prev-best"
+       *ngIf="quiz.bestScore() !== null && !isNewRecord">
+
+    🏅 أفضل نتيجة لك:
+    {{ quiz.bestScore() }}/10
+
+  </div>
+
+  <!-- History -->
+
+<div class="history">
+
+<h3>
+📊 آخر النتائج
+</h3>
+
+
+<div class="history"
+*ngIf="quiz.history().length">
+
+
+
+
+<div
+class="history-item"
+*ngFor="let item of quiz.history()">
+
+
+
+🏆 {{item.score}}/10
+
+<br>
+
+
+<span>
+🎯 {{item.level}}
+</span>
+
+
+<span>
+📅 {{item.date}}
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+  <div class="btn-row">
+
+    <button 
+      class="btn btn-share"
+      (click)="share()">
+
+      📤 مشاركة
+
+    </button>
+
+
+<button
+class="btn btn-retry"
+(click)="retry()">
+
+🔄 مجدداً
+
+</button>
+
+  </div>
+
+
+  <button
+    class="btn-home"
+    (click)="quiz.restart()">
+
+    🏠 الرئيسية
+
+  </button>
+
+
+</div>

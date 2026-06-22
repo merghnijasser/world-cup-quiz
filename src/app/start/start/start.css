@@ -1,0 +1,231 @@
+.card {
+  background: #112240;
+  border: 1px solid #1f3a5f;
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  direction: rtl;
+}
+
+.trophy {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: #ffd700;
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sub {
+  color: #a8c0e0;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.best {
+  background: #0d1f3c;
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: #d0dcee;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.best strong {
+  color: #ffd700;
+}
+
+.btn-start {
+  background: #4dd0e1;
+  color: #0a1128;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 20px rgba(77,208,225,0.3);
+}
+
+.btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(77,208,225,0.4);
+}
+
+.btn-start:active {
+  transform: scale(0.97);
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.features span {
+  color: #6b85ab;
+  font-size: 0.8rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+.card {
+
+background:#112240;
+
+border:1px solid #1f3a5f;
+
+border-radius:20px;
+
+padding:30px 24px;
+
+width:100%;
+
+max-width:400px;
+
+text-align:center;
+
+direction:rtl;
+
+font-family:'Segoe UI';
+
+}
+
+
+.trophy{
+
+font-size:60px;
+
+}
+
+
+h1{
+
+color:#ffd700;
+
+}
+
+
+
+.sub{
+
+color:#a8c0e0;
+
+}
+
+
+
+.best{
+
+margin:20px 0;
+
+background:#0d1f3c;
+
+padding:12px;
+
+border-radius:10px;
+
+color:#4dd0e1;
+
+}
+
+
+
+.choose{
+
+color:#fff;
+
+margin-top:20px;
+
+}
+
+
+
+.levels{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+
+
+.level{
+
+padding:14px;
+
+border-radius:12px;
+
+border:none;
+
+font-size:1rem;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+.easy{
+
+background:#4caf50;
+
+color:white;
+
+}
+
+
+
+.medium{
+
+background:#ffc107;
+
+}
+
+
+
+.hard{
+
+background:#ff5252;
+
+color:white;
+
+}
+
+
+
+.level:hover{
+
+transform:scale(1.03);
+
+}
+
+
+
+.features{
+
+margin-top:25px;
+
+display:flex;
+
+justify-content:space-around;
+
+color:#a8c0e0;
+
+font-size:.85rem;
+
+}

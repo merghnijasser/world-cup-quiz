@@ -1,0 +1,88 @@
+<div class="card">
+
+  <div class="trophy">🏆</div>
+
+  <h1>World Cup Quiz</h1>
+
+
+  <p class="sub">
+    10 أسئلة · 15 ثانية لكل سؤال · اختبر معرفتك
+  </p>
+
+
+  <div class="best"
+       *ngIf="quiz.bestScore() !== null">
+
+    🏅 أفضل نتيجة لك:
+    <strong>
+      {{quiz.bestScore()}}/10
+    </strong>
+
+  </div>
+
+
+
+  <h3 class="choose">
+    اختر المستوى
+  </h3>
+
+
+  <div class="levels">
+
+
+    <button
+      class="level easy"
+      (click)="quiz.startQuiz('easy')">
+
+      🟢 سهل
+
+    </button>
+
+
+
+    <button
+      class="level medium"
+      (click)="quiz.startQuiz('medium')">
+
+      🟡 متوسط
+
+    </button>
+
+
+
+    <button
+      class="level hard"
+      (click)="quiz.startQuiz('hard')">
+
+      🔴 صعب
+
+    </button>
+
+
+  </div>
+
+
+
+
+  <div class="features">
+
+    <span>
+      ⏱ عداد زمني
+    </span>
+
+
+    <span>
+      🔊 أصوات
+    </span>
+
+
+    <span>
+      📊 نتائج
+    </span>
+
+
+  </div>
+
+
+
+</div>
