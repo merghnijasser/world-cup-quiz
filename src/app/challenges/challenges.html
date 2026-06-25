@@ -1,0 +1,57 @@
+<div class="challenges-container">
+  <div class="challenge-card" *ngIf="challengeService.dailyChallenge() as challenge">
+    <div class="challenge-header">
+      <span class="icon">⭐</span>
+      <div>
+        <h2>{{ challenge.title }}</h2>
+        <span class="daily-badge">📅 Challenge Quotidien</span>
+      </div>
+    </div>
+
+    <p class="description">{{ challenge.description }}</p>
+
+    <div class="rewards">
+      <div class="reward">
+        <span class="reward-icon">🎁</span>
+        <span>+{{ challenge.rewardXP }} XP</span>
+      </div>
+      <div class="reward">
+        <span class="reward-icon">💎</span>
+        <span>+{{ challenge.rewardPoints }} Points</span>
+      </div>
+    </div>
+
+    <div class="time-left">
+      <span>⏱ Fin dans:</span>
+      <span class="time-value">{{ challengeService.getTimeLeft() }}</span>
+    </div>
+
+    <div class="progress-container">
+      <div class="time-progress">
+        <div class="time-fill" [style.width.%]="challengeService.getProgress()"></div>
+      </div>
+    </div>
+
+    <button class="start-btn" 
+            (click)="startChallenge()"
+            [disabled]="challenge.completed"
+            [class.completed]="challenge.completed">
+      {{ challenge.completed ? '✅ Défi complété !' : '🎯 Commencer le défi' }}
+    </button>
+
+    <div class="bonus" *ngIf="challenge.completed">
+      🎉 Félicitations ! Tu as gagné {{ challenge.rewardXP }} XP bonus !
+    </div>
+
+    <div class="challenge-info">
+      <span>📝 {{ challenge.questions.length }} questions</span>
+      <span>⏱ 5 minutes</span>
+    </div>
+  </div>
+
+  <div class="no-challenge" *ngIf="!challengeService.dailyChallenge()">
+    <span>⏳ Chargement du défi...</span>
+  </div>
+
+  <button class="back-btn" (click)="goBack()">🔙 Retour</button>
+</div>

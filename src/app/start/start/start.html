@@ -1,88 +1,60 @@
 <div class="card">
 
+  <div class="user-box" *ngIf="auth.user()">
+    <img class="avatar" [src]="auth.user()?.photoURL || 'assets/default-user.png'" alt="avatar">
+    <h3>👋 {{ auth.user()?.displayName || auth.user()?.email }}</h3>
+    <button class="logout" (click)="logout()">Déconnexion</button>
+  </div>
+
   <div class="trophy">🏆</div>
-
   <h1>World Cup Quiz</h1>
+  <p class="sub">10 أسئلة · 15 ثانية لكل سؤال · اختبر معرفتك</p>
 
-
-  <p class="sub">
-    10 أسئلة · 15 ثانية لكل سؤال · اختبر معرفتك
-  </p>
-
-
-  <div class="best"
-       *ngIf="quiz.bestScore() !== null">
-
-    🏅 أفضل نتيجة لك:
-    <strong>
-      {{quiz.bestScore()}}/10
-    </strong>
-
+  <!-- XP Display -->
+  <div class="xp-display">
+    <div class="xp-box">
+      <span class="xp-icon">⭐</span>
+      <span class="xp-value">{{ xpService.xp() }}</span>
+      <span class="xp-label">XP</span>
+    </div>
+    <div class="level-box">
+      <span class="level-icon">{{ xpService.getLevelIcon(xpService.level()) }}</span>
+      <span class="level-name">Niveau {{ xpService.level() }}</span>
+    </div>
   </div>
 
+  <!-- XP Progress -->
+  <div class="xp-progress">
+    <div class="xp-progress-bar">
+      <div class="xp-progress-fill" [style.width.%]="xpService.getProgress()"></div>
+    </div>
+    <span class="xp-next">
+      Prochain niveau: {{ xpService.getXPToNextLevel() }} XP restants
+    </span>
+  </div>
 
+  <div class="best" *ngIf="quiz.bestScore() !== null">
+    🏅 Meilleur score : <strong>{{ quiz.bestScore() }}/10</strong>
+  </div>
 
-  <h3 class="choose">
-    اختر المستوى
-  </h3>
-
-
+  <h3 class="choose">اختر المستوى</h3>
   <div class="levels">
-
-
-    <button
-      class="level easy"
-      (click)="quiz.startQuiz('easy')">
-
-      🟢 سهل
-
-    </button>
-
-
-
-    <button
-      class="level medium"
-      (click)="quiz.startQuiz('medium')">
-
-      🟡 متوسط
-
-    </button>
-
-
-
-    <button
-      class="level hard"
-      (click)="quiz.startQuiz('hard')">
-
-      🔴 صعب
-
-    </button>
-
-
+    <button class="level easy" (click)="startQuiz('easy')">🟢 سهل</button>
+    <button class="level medium" (click)="startQuiz('medium')">🟡 متوسط</button>
+    <button class="level hard" (click)="startQuiz('hard')">🔴 صعب</button>
   </div>
 
-
-
+  <!-- Navigation rapide -->
+  <div class="quick-nav">
+    <button class="nav-btn" (click)="navigateTo('profile')">👤 Profil</button>
+    <button class="nav-btn" (click)="navigateTo('leaderboard')">🏆 Classement</button>
+    <button class="nav-btn" (click)="navigateTo('challenges')">⭐ Défis</button>
+  </div>
 
   <div class="features">
-
-    <span>
-      ⏱ عداد زمني
-    </span>
-
-
-    <span>
-      🔊 أصوات
-    </span>
-
-
-    <span>
-      📊 نتائج
-    </span>
-
-
+    <span>⏱ عداد زمني</span>
+    <span>🔊 أصوات</span>
+    <span>📊 نتائج</span>
   </div>
-
-
 
 </div>

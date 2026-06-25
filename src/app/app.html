@@ -1,17 +1,1 @@
-<div class="app-shell">
-
-  <app-start
-    *ngIf="quiz.screen() === 'start'">
-  </app-start>
-
-
-  <app-quiz
-    *ngIf="quiz.screen() === 'quiz'">
-  </app-quiz>
-
-
-  <app-result
-    *ngIf="quiz.screen() === 'result'">
-  </app-result>
-
-</div>
+<router-outlet></router-outlet>

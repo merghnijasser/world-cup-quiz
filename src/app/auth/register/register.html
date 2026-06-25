@@ -1,0 +1,83 @@
+<div class="container">
+
+
+<div class="card">
+
+
+<div class="logo">
+🏆
+</div>
+
+
+<h1>
+World Cup Quiz
+</h1>
+
+
+<h2>
+Créer un compte
+</h2>
+
+
+
+<input
+
+type="email"
+
+placeholder="Email"
+
+[(ngModel)]="email">
+
+
+
+<input
+
+type="password"
+
+placeholder="Mot de passe"
+
+[(ngModel)]="password">
+
+
+
+
+
+<button
+
+(click)="register()"
+
+class="register">
+
+Créer mon compte
+
+</button>
+
+
+
+
+<p class="error">
+
+{{error}}
+
+</p>
+
+
+
+
+<p>
+
+Déjà inscrit ?
+
+<a routerLink="/login">
+
+Connexion
+
+</a>
+
+</p>
+
+
+</div>
+
+
+</div>

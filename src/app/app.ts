@@ -1,21 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { QuizService } from './services/quiz';
-import { ResultComponent } from './result/result/result';
-import { QuizComponent } from './quiz/quiz/quiz';
-import { StartComponent } from './start/start/start';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    CommonModule,
-    StartComponent,
-    QuizComponent,
-    ResultComponent
-  ],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  constructor(public quiz: QuizService) {}
+
 }

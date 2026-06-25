@@ -1,0 +1,68 @@
+<div class="leaderboard-container">
+  <div class="header">
+    <h2>🏆 Classement mondial</h2>
+    <p class="sub">Les meilleurs joueurs du monde</p>
+  </div>
+
+  <!-- Top 3 Podium -->
+  <div class="podium" *ngIf="topPlayers.length >= 3">
+    <div class="podium-item second" *ngIf="topPlayers[1]">
+      <div class="podium-avatar">
+        <img [src]="topPlayers[1].avatar || 'assets/default-avatar.png'" alt="avatar">
+        <span class="podium-rank">🥈</span>
+      </div>
+      <span class="podium-name">{{ topPlayers[1].username }}</span>
+      <span class="podium-xp">{{ topPlayers[1].xp }} XP</span>
+      <span class="podium-level">{{ getLevelIcon(topPlayers[1].level) }}</span>
+    </div>
+
+    <div class="podium-item first" *ngIf="topPlayers[0]">
+      <div class="podium-avatar">
+        <img [src]="topPlayers[0].avatar || 'assets/default-avatar.png'" alt="avatar">
+        <span class="podium-rank">🥇</span>
+      </div>
+      <span class="podium-name">{{ topPlayers[0].username }}</span>
+      <span class="podium-xp">{{ topPlayers[0].xp }} XP</span>
+      <span class="podium-level">{{ getLevelIcon(topPlayers[0].level) }}</span>
+    </div>
+
+    <div class="podium-item third" *ngIf="topPlayers[2]">
+      <div class="podium-avatar">
+        <img [src]="topPlayers[2].avatar || 'assets/default-avatar.png'" alt="avatar">
+        <span class="podium-rank">🥉</span>
+      </div>
+      <span class="podium-name">{{ topPlayers[2].username }}</span>
+      <span class="podium-xp">{{ topPlayers[2].xp }} XP</span>
+      <span class="podium-level">{{ getLevelIcon(topPlayers[2].level) }}</span>
+    </div>
+  </div>
+
+  <!-- Full List -->
+  <div class="leaderboard-list">
+    <div class="leaderboard-item" *ngFor="let player of topPlayers; let i = index"
+         [class.current-user]="isCurrentUser(player)">
+      <span class="rank">#{{ i + 1 }}</span>
+      <img [src]="player.avatar || 'assets/default-avatar.png'" class="avatar" alt="avatar">
+      <span class="username">{{ player.username }}</span>
+      <span class="level-icon">{{ getLevelIcon(player.level) }}</span>
+      <span class="score">{{ player.xp }} pts</span>
+      <span class="best" *ngIf="player.bestScore">🏅{{ player.bestScore }}/10</span>
+    </div>
+  </div>
+
+  <!-- My Rank -->
+  <div class="my-rank" *ngIf="myRank > 0">
+    <div class="rank-info">
+      <span>👤 Votre rang</span>
+      <span class="rank-number">#{{ myRank }}</span>
+    </div>
+    <div class="rank-progress">
+      <div class="rank-bar">
+        <div class="rank-fill" [style.width.%]="rankProgress"></div>
+      </div>
+      <span>{{ playersBefore }} joueurs devant vous</span>
+    </div>
+  </div>
+
+  <button class="back-btn" (click)="goBack()">🔙 Retour</button>
+</div>

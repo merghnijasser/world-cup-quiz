@@ -2,9 +2,9 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
-  isDevMode,
-  importProvidersFrom
+  isDevMode
 } from '@angular/core';
+
 
 
 import {
@@ -13,9 +13,11 @@ import {
 } from '@angular/platform-browser';
 
 
+
 import {
   provideServiceWorker
 } from '@angular/service-worker';
+
 
 
 import {
@@ -25,16 +27,21 @@ import {
 } from '@angular/common/http';
 
 
+
 import {
   provideAnimations
 } from '@angular/platform-browser/animations';
 
 
-// ngx translate
+
+// ======================
+// Translate
+// ======================
+
 import {
-  TranslateLoader,
-  
+  TranslateLoader
 } from '@ngx-translate/core';
+
 
 
 import {
@@ -44,76 +51,219 @@ import {
 
 
 
-// Loader pour fichiers JSON
-export function HttpLoaderFactory() {
+
+// ======================
+// Firebase
+// ======================
+
+import {
+  provideFirebaseApp,
+  initializeApp
+} from '@angular/fire/app';
+
+
+
+import {
+  provideAuth,
+  getAuth
+} from '@angular/fire/auth';
+
+
+
+import {
+  provideFirestore,
+  getFirestore
+} from '@angular/fire/firestore';
+
+
+
+import {
+  environment
+} from '../environments/environment';
+
+
+
+import { provideRouter, Route } from '@angular/router';
+import { routes } from './app.routes';
+
+
+// Loader traduction JSON
+
+export function HttpLoaderFactory(){
+
   return new TranslateHttpLoader();
+
 }
+
+
+
+
 
 
 
 export const appConfig: ApplicationConfig = {
 
 
-  providers: [
 
-
-    provideBrowserGlobalErrorListeners(),
-
-
-
-    provideZoneChangeDetection({
-
-      eventCoalescing: true
-
-    }),
+providers: [
 
 
 
-    provideClientHydration(
+  // Angular Error Handler
 
-      withEventReplay()
-
-    ),
-
-
-
-    provideHttpClient(
-
-      withFetch()
-
-    ),
-
-
-
-    provideAnimations(),
-
-
-
-    // 🌍 Traduction
-    {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    },
+  provideBrowserGlobalErrorListeners(),
 
 
 
 
-    provideServiceWorker(
 
-      'ngsw-worker.js',
+  // Optimisation Angular
 
-      {
+  provideZoneChangeDetection({
 
-        enabled: !isDevMode(),
+    eventCoalescing:true
 
-        registrationStrategy:
-          'registerWhenStable:30000'
+  }),
 
-      }
+
+
+
+
+  // SSR Hydration
+
+  provideClientHydration(
+
+    withEventReplay()
+
+  ),
+
+
+
+
+
+  // HTTP
+
+  provideHttpClient(
+
+    withFetch()
+
+  ),
+
+
+
+
+
+  // Animations
+
+  provideAnimations(),
+
+
+
+
+
+  // =====================
+  // Translation
+  // =====================
+
+
+  {
+
+    provide: TranslateLoader,
+
+    useFactory: HttpLoaderFactory,
+
+    deps:[HttpClient]
+
+  },
+
+
+
+
+
+
+
+  // =====================
+  // Firebase App
+  // =====================
+
+
+  provideFirebaseApp(
+
+    () => initializeApp(
+
+      environment.firebaseConfig
 
     )
 
-  ]
+  ),
+
+
+
+
+
+
+
+  // =====================
+  // Firebase Auth
+  // Login Google / Email
+  // =====================
+
+
+  provideAuth(
+
+    () => getAuth()
+
+  ),
+
+
+
+
+
+
+
+  // =====================
+  // Firebase Firestore
+  // Profil utilisateur
+  // XP
+  // Score
+  // =====================
+
+
+  provideFirestore(
+
+    () => getFirestore()
+
+  ),
+
+
+
+
+
+
+
+  // =====================
+  // PWA
+  // =====================
+
+
+  provideServiceWorker(
+
+    'ngsw-worker.js',
+
+    {
+
+      enabled: !isDevMode(),
+
+      registrationStrategy:
+
+        'registerWhenStable:30000'
+
+    }
+
+  ),
+  provideRouter(routes)
+
+
+]
 
 };

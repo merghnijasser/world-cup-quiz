@@ -2,110 +2,49 @@
 
   <h2>🏁 النتيجة النهائية</h2>
 
-
   <div class="circle">
-
-    <span class="num">
-      {{ quiz.score() }}
-    </span>
-
-    <span class="denom">
-      / 10
-    </span>
-
+    <span class="num">{{ quiz.score() }}</span>
+    <span class="denom">/ 10</span>
   </div>
 
-
-  <p class="msg">
-    {{ quiz.getResultMessage() }}
-  </p>
-
-
-  <div class="record" *ngIf="isNewRecord">
-    🎉 رقم قياسي جديد!
+  <!-- XP Earned -->
+  <div class="xp-earned" *ngIf="quiz.getEarnedXP() > 0">
+    ⭐ +{{ quiz.getEarnedXP() }} XP
+    <span class="xp-total">(Total: {{ xpService.xp() }} XP)</span>
   </div>
 
+  <!-- Level Up -->
+  <div class="level-up" *ngIf="leveledUp">
+    🎉 Niveau {{ xpService.level() }} !
+    <span class="level-icon">{{ xpService.getLevelIcon(xpService.level()) }}</span>
+  </div>
 
-  <div class="prev-best"
-       *ngIf="quiz.bestScore() !== null && !isNewRecord">
+  <p class="msg">{{ quiz.getResultMessage() }}</p>
 
-    🏅 أفضل نتيجة لك:
-    {{ quiz.bestScore() }}/10
+  <div class="record" *ngIf="isNewRecord">🎉 رقم قياسي جديد!</div>
 
+  <div class="prev-best" *ngIf="quiz.bestScore() !== null && !isNewRecord">
+    🏅 Meilleur score: {{ quiz.bestScore() }}/10
   </div>
 
   <!-- History -->
-
-<div class="history">
-
-<h3>
-📊 آخر النتائج
-</h3>
-
-
-<div class="history"
-*ngIf="quiz.history().length">
-
-
-
-
-<div
-class="history-item"
-*ngFor="let item of quiz.history()">
-
-
-
-🏆 {{item.score}}/10
-
-<br>
-
-
-<span>
-🎯 {{item.level}}
-</span>
-
-
-<span>
-📅 {{item.date}}
-</span>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-  <div class="btn-row">
-
-    <button 
-      class="btn btn-share"
-      (click)="share()">
-
-      📤 مشاركة
-
-    </button>
-
-
-<button
-class="btn btn-retry"
-(click)="retry()">
-
-🔄 مجدداً
-
-</button>
-
+  <div class="history">
+    <h3>📊 Derniers résultats</h3>
+    <div class="history-list" *ngIf="quiz.history().length">
+      <div class="history-item" *ngFor="let item of quiz.history()">
+        <span class="h-date">{{ item.date }}</span>
+        <span class="h-level">{{ item.level }}</span>
+        <span class="h-score">{{ item.score }}/10</span>
+        <span class="h-xp" *ngIf="item.xp">+{{ item.xp }} XP</span>
+      </div>
+    </div>
   </div>
 
+  <div class="btn-row">
+    <button class="btn btn-share" (click)="share()">📤 مشاركة</button>
+    <button class="btn btn-retry" (click)="retry()">🔄 مجدداً</button>
+  </div>
 
-  <button
-    class="btn-home"
-    (click)="quiz.restart()">
-
-    🏠 الرئيسية
-
-  </button>
-
+  <button class="btn-home" (click)="goHome()">🏠 الرئيسية</button>
 
 </div>

@@ -1,0 +1,92 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="avatar-container">
+      <img [src]="auth.user()?.photoURL || 'assets/default-avatar.png'" class="avatar">
+      <span class="level-badge">Niv. {{ xpService.level() }}</span>
+    </div>
+    <h2>{{ auth.user()?.displayName || 'Joueur' }}</h2>
+    <p class="rank">{{ xpService.getRank() }}</p>
+  </div>
+
+  <!-- XP Summary -->
+  <div class="xp-summary">
+    <div class="xp-item">
+      <span class="xp-label">XP Total</span>
+      <span class="xp-value">{{ stats.totalXP }}</span>
+    </div>
+    <div class="xp-item">
+      <span class="xp-label">Niveau</span>
+      <span class="xp-value">{{ xpService.level() }}</span>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="xp-progress-section">
+    <div class="xp-progress-bar">
+      <div class="xp-fill" [style.width.%]="xpService.getProgress()"></div>
+    </div>
+    <span class="xp-text">
+      {{ xpService.xp() }} / {{ xpService.maxXPForLevel(xpService.level()) }} XP
+    </span>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.totalGames }}</span>
+      <span class="stat-label">Parties</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.winRate }}%</span>
+      <span class="stat-label">Taux de réussite</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.bestScore }}/10</span>
+      <span class="stat-label">Meilleur score</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.totalCorrect }}</span>
+      <span class="stat-label">Bonnes réponses</span>
+    </div>
+  </div>
+
+  <!-- Level Breakdown -->
+  <div class="level-breakdown">
+    <h3>📊 Répartition par niveau</h3>
+    <div class="level-item">
+      <span>🟢 Facile</span>
+      <div class="bar"><div class="fill easy" [style.width.%]="profileService.getLevelPercentage('easy')"></div></div>
+      <span>{{ stats.gamesByLevel.easy }}</span>
+    </div>
+    <div class="level-item">
+      <span>🟡 Moyen</span>
+      <div class="bar"><div class="fill medium" [style.width.%]="profileService.getLevelPercentage('medium')"></div></div>
+      <span>{{ stats.gamesByLevel.medium }}</span>
+    </div>
+    <div class="level-item">
+      <span>🔴 Difficile</span>
+      <div class="bar"><div class="fill hard" [style.width.%]="profileService.getLevelPercentage('hard')"></div></div>
+      <span>{{ stats.gamesByLevel.hard }}</span>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section">
+    <h3>📊 Dernières parties</h3>
+    <div class="history-list">
+      <div class="history-item" *ngFor="let game of history">
+        <div class="history-left">
+          <span class="history-date">{{ game.date }}</span>
+          <span class="history-level">{{ game.level }}</span>
+        </div>
+        <div class="history-right">
+          <span class="history-score">{{ game.score }}/10</span>
+          <span class="history-xp" *ngIf="game.xp">+{{ game.xp }} XP</span>
+        </div>
+      </div>
+      <p *ngIf="history.length === 0" class="no-history">Aucune partie jouée</p>
+    </div>
+  </div>
+
+  <button class="logout-btn" (click)="logout()">🚪 Déconnexion</button>
+</div>
